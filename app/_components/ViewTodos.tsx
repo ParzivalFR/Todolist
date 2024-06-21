@@ -35,22 +35,22 @@ export default function ViewTodos() {
         {todos.map((todo) => (
           <div
             key={todo.id}
-            className="relative flex flex-col items-center justify-between gap-2 p-4 max-w-[300px] w-full h-full min-h-[150px] bg-secondary/30 border border-secondary/40 rounded-md shadow-md"
+            className="relative flex flex-col items-center gap-2 p-4 max-w-[300px] w-full h-full min-h-[150px] bg-secondary/30 border border-secondary/40 rounded-md shadow-md"
           >
             <div className="w-full flex flex-col items-center gap-2">
               <h2 className="text-xl font-bold">{todo.title}</h2>
               <Separator className="w-40" />
             </div>
-            <p className="w-full h-full flex justify-center text-sm text-center">
+            <p className="w-full h-full m-auto flex justify-center text-sm text-center">
               {todo.description}
             </p>
-            <p className="absolute -top-2 -right-2 text-2xl">
+            <span className="absolute -top-2 -right-2 text-2xl">
               {todo.completed ? (
                 <IoMdCheckmarkCircleOutline className="text-green-500/80" />
               ) : (
                 <AiOutlineCloseCircle className="text-red-500/80" />
               )}
-            </p>
+            </span>
           </div>
         ))}
       </div>

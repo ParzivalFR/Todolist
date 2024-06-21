@@ -125,7 +125,10 @@ export default function TodoForm() {
   const todoItems = useMemo(
     () =>
       todos.map((todo) => (
-        <li key={todo.id} className="flex items-center justify-between">
+        <li
+          key={todo.id}
+          className="flex items-center justify-between bg-secondary/50 rounded-md pl-4"
+        >
           <Checkbox
             checked={todo.completed}
             onCheckedChange={() => toggleTodoCompletion(todo.id)}
@@ -152,18 +155,18 @@ export default function TodoForm() {
               {todo.title}
             </span>
           )}
-          <div className="flex gap-2">
+          <div className="flex">
             <Button
-              className="bg-transparent hover:bg-foreground/20 px-4 rounded-lg"
+              className="bg-transparent hover:bg-foreground/20 px-2 rounded-lg"
               onClick={(e) => updateTodo(e, todo.id)}
             >
-              <FaRegEdit className="size-4 m-0 md:size-6 text-foreground/70" />
+              <FaRegEdit className="size-4 m-0  text-foreground/70" />
             </Button>
             <Button
-              className="bg-transparent hover:bg-foreground/20 px-4 rounded-lg"
+              className="bg-transparent hover:bg-foreground/20 px-2 rounded-lg"
               onClick={(e) => deleteTodo(e, todo.id)}
             >
-              <FaTrashAlt className="size-4 m-0 md:size-6 text-red-500" />
+              <FaTrashAlt className="size-4 m-0  text-red-500" />
             </Button>
           </div>
         </li>
@@ -181,14 +184,15 @@ export default function TodoForm() {
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
-      className="flex flex-col gap-4 w-full sm:w-4/5 lg:w-2/5 p-6 border border-secondary/50 bg-secondary/60 rounded-lg shadow-lg"
+      className="flex flex-col gap-4 w-full sm:w-4/5 lg:w-3/5 p-6 border border-secondary/50 bg-secondary/60 rounded-lg shadow-lg"
     >
       <h1 className="text-4xl sm:text-6xl text-center">TODO LIST</h1>
-      <div className="flex flex-col gap-2 w-full items-center">
+      <div className="flex flex-col gap-2 w-full items-end">
         <Input
           placeholder="Entrez votre tâche ici..."
           value={newTodoTitle}
           onChange={(e) => setNewTodo(e.target.value)}
+          className="max-w-[300px]"
         />
         <textarea
           placeholder="Entrez la description de votre tâche ici..."
@@ -196,12 +200,16 @@ export default function TodoForm() {
           onChange={(e) => setNewTodoDescription(e.target.value)}
           className="w-full p-2 rounded-lg bg-background"
         />
-        <Button className="px-4" onClick={createTodo}>
-          Ajouter
-        </Button>
+        <div className="flex justify-end items-center w-full">
+          <Button className="px-8" onClick={createTodo}>
+            Ajouter
+          </Button>
+        </div>
       </div>
       <div>
-        <ul className="flex flex-col gap-2 mt-4">{todoItems}</ul>
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
+          {todoItems}
+        </ul>
       </div>
       <Separator className="w-4/5 m-auto" />
       <div className="flex items-center justify-center">
