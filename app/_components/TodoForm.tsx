@@ -13,7 +13,7 @@ import { toast, ToastPosition, Zoom } from "react-toastify";
 
 const toastOptions = {
   position: "bottom-right" as ToastPosition,
-  autoClose: 8000,
+  autoClose: 5000,
   hideProgressBar: false,
   closeOnClick: true,
   pauseOnHover: true,
@@ -139,7 +139,7 @@ export default function TodoForm() {
               onChange={(e) => setEditingText(e.target.value)}
               onBlur={() => setEditingTodo(null)}
               autoFocus
-              className="w-full mx-2 bg-background rounded-lg p-2 text-center text-base"
+              className="w-full mx-2 bg-background/50 rounded-lg p-0 text-center text-base border-none"
             />
           ) : (
             <span
