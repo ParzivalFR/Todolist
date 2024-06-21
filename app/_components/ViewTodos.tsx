@@ -1,14 +1,17 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Todo } from "@prisma/client";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 export default function ViewTodos() {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const router = useRouter();
 
   const fetchTodos = useCallback(async () => {
     try {
@@ -32,13 +35,13 @@ export default function ViewTodos() {
         {todos.map((todo) => (
           <div
             key={todo.id}
-            className="relative flex flex-col items-center justify-between gap-2 p-4 max-w-[300px] w-full h-full max-h-[150px] bg-secondary/30 border border-secondary/40 rounded-md shadow-md"
+            className="relative flex flex-col items-center justify-between gap-2 p-4 max-w-[300px] w-full h-full min-h-[150px] bg-secondary/30 border border-secondary/40 rounded-md shadow-md"
           >
             <div className="w-full flex flex-col items-center gap-2">
               <h2 className="text-xl font-bold">{todo.title}</h2>
               <Separator className="w-40" />
             </div>
-            <p className="w-full h-full flex items-center justify-center text-sm">
+            <p className="w-full h-full flex justify-center text-sm text-center">
               {todo.description}
             </p>
             <p className="absolute -top-2 -right-2 text-2xl">
@@ -51,6 +54,9 @@ export default function ViewTodos() {
           </div>
         ))}
       </div>
+      <Button onClick={() => router.back()} className="max-w-[100px]">
+        Retour
+      </Button>
     </section>
   );
 }
