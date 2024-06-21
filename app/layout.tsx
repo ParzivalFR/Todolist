@@ -29,7 +29,7 @@ export default function RootLayout({
         >
           <Nav />
           {children}
-          <ToastContainer />
+          <ToastContainer className={"m-0 p-0"} />
           <Footer />
         </ThemeProvider>
       </body>
